@@ -19,7 +19,7 @@ env:
   AWS_REGION: us-east-1
   EKS_CLUSTER: vprofile-eks
 
-  jobs:
+jobs:
     terraform:
       name: "apply terraform code changes"
       runs-on: ubuntu-latest
@@ -58,6 +58,6 @@ env:
         - name: terraform plan status
           if: steps.plan.outcome == 'failure'
           run: exit 1
-          
+
 
 
