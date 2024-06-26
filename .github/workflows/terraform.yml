@@ -2,15 +2,15 @@ name: "vprofile IAC"
 on:
   push:
     branches:
-      -main
-      -stage
+      - main
+      - stage
     paths:
-      -terraform/**
+      - terraform/**
   pull_request:
     branches:
-      -main
+      - main
     paths:
-      -terraform/**
+      - terraform/**
 
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -40,7 +40,7 @@ jobs:
 
         - name: terraform init
           id: init
-          run: terraform init -backend-config="bucket=$BUCKET_IF_STATE"
+          run: terraform init -backend-config="bucket=$BUCKET_TF_STATE"
 
         - name: terraform format
           id: fmt
@@ -50,7 +50,7 @@ jobs:
           id: validate
           run: terraform validate
 
-        - mame: terraform plan
+        - name: terraform plan
           id: plan
           run: terraform plan -no-color -input=false -out planfile
           continue-on-error: true
